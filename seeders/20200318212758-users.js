@@ -43,15 +43,21 @@ module.exports = {
     const users = await Promise.all([
       User.upsert({
         id: 1,
-        name: "testuser",
+        userName: "testuser",
+        fullName: "Test User",
         email: "test@test.com",
-        password: bcrypt.hashSync("test1234", SALT_ROUNDS)
+        password: bcrypt.hashSync("test1234", SALT_ROUNDS),
+        latitude: 52.3499879,
+        longitude: 4.8439459
       }),
       User.upsert({
         id: 2,
-        name: "dummy",
+        userName: "dummy",
+        fullName: "Dummy User",
         email: "dummy@dummy.com",
-        password: bcrypt.hashSync("dummy1234", SALT_ROUNDS)
+        password: bcrypt.hashSync("dummy1234", SALT_ROUNDS),
+        latitude: 52.3536716,
+        longitude: 4.8562593
       })
     ]);
 

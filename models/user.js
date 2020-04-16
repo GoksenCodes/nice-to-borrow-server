@@ -3,7 +3,12 @@ module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define(
     "user",
     {
-      name: {
+      userName: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false
+      },
+      fullName: {
         type: DataTypes.STRING,
         allowNull: false
       },
@@ -15,12 +20,22 @@ module.exports = (sequelize, DataTypes) => {
       password: {
         type: DataTypes.STRING,
         allowNull: false
+      },
+      latitude: {
+        type: DataTypes.DECIMAL
+      },
+      longitude: {
+        type: DataTypes.DECIMAL
       }
     },
     {}
   );
   user.associate = function(models) {
-    // associations can be defined here
+    user.hasMany(models.book);
+    user.belongsToMany(models.book, {
+      through: "borrowedItems",
+      foreignKey: "userId"
+    });
   };
   return user;
 };
