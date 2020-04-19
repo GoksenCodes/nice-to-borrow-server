@@ -2,25 +2,47 @@ const { Router } = require("express");
 const Book = require("../models").book;
 const auth = require("../auth/middleware");
 const router = new Router();
+const { Op } = require("sequelize");
 
 router.get("/", async (req, res) => {
   try {
-    const { title, language } = req.body;
-    console.log(title);
+    const allBooks = await Book.findAll();
+    res.status(200).json(allBooks);
+  } catch (e) {
+    console.log("error: ", e);
+  }
+});
+
+router.get("/:title/:language", async (req, res) => {
+  try {
+    console.log("REQ PARAMS", req.params);
+    const { title, language } = req.params;
+    console.log(title, language);
     let filteredBooks;
-    if (title && language === "all") {
+    if (title !== "all" && language === "all") {
       filteredBooks = await Book.findAll({
         where: {
           title: title
+          // {
+          //   [Op.iLike]: " title"
+          // }
         }
       });
-    } else if (!title && language !== "all") {
+    } else if (title === "all" && language !== "all") {
       filteredBooks = await Book.findAll({
         where: {
           language: language
         }
       });
+    } else {
+      filteredBooks = await Book.findAll({
+        where: {
+          title: title,
+          language: language
+        }
+      });
     }
+    console.log("FILTERED BOOKS", filteredBooks);
     return res.status(200).json(filteredBooks);
   } catch (e) {
     console.log("error: ", e);
