@@ -3,10 +3,13 @@ const Book = require("../models").book;
 const auth = require("../auth/middleware");
 const router = new Router();
 const { Op } = require("sequelize");
+const User = require("../models").user;
 
 router.get("/", async (req, res) => {
   try {
-    const allBooks = await Book.findAll();
+    const allBooks = await Book.findAll({
+      include: User
+    });
     res.status(200).json(allBooks);
   } catch (e) {
     console.log("error: ", e);
@@ -21,6 +24,7 @@ router.get("/:title/:language", async (req, res) => {
     let filteredBooks;
     if (title !== "all" && language === "all") {
       filteredBooks = await Book.findAll({
+        include: User,
         where: {
           title: title
           // {
