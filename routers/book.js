@@ -46,12 +46,12 @@ router.get(
               sequelize.col("user.location"),
               sequelize.literal(`ST_MakePoint(${long},${lat})::geography`),
               desiredDistance
-            )
+            ),
+            true
           )
         });
-      }
-
-      if (title !== "all" && language === "all") {
+        // return res.status(200).json(filteredBooks);
+      } else if (title !== "all" && language === "all") {
         filteredBooks = await Book.findAll({
           include: User,
           where: {
