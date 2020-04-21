@@ -31,7 +31,7 @@ router.get(
 
       let filteredBooks;
 
-      if ((title !== "all" && language === "all", distance !== "all")) {
+      if (title !== "all" && language === "all" && distance !== "all") {
         filteredBooks = await Book.findAll({
           include: [
             {
@@ -54,7 +54,8 @@ router.get(
             )
           }
         });
-      } else if ((title === "all" && language !== "all", distance !== "all")) {
+      }
+      if (title === "all" && language !== "all" && distance !== "all") {
         filteredBooks = await Book.findAll({
           include: [
             {
