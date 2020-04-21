@@ -46,8 +46,9 @@ module.exports = {
         fullName: "Mario Speedwagon",
         email: "mario@mario.com",
         password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        latitude: 52.36534,
-        longitude: 4.8851288,
+        location: { type: "Point", coordinates: [4.8851288, 52.36534] },
+        // latitude: 52.36534,
+        // longitude: 4.8851288,
         createdAt: new Date(),
         updatedAt: new Date()
       }),
@@ -56,8 +57,9 @@ module.exports = {
         fullName: "Petey Cruiser",
         email: "petey@petey.com",
         password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        latitude: 52.3727781,
-        longitude: 4.8794803,
+        location: { type: "Point", coordinates: [4.8794803, 52.3727781] },
+        // latitude: 52.3727781,
+        // longitude: 4.8794803,
         createdAt: new Date(),
         updatedAt: new Date()
       }),
@@ -66,8 +68,9 @@ module.exports = {
         fullName: "Anna Sthesia",
         email: "anna@anna.com",
         password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        latitude: 52.3641635,
-        longitude: 4.9073196,
+        location: { type: "Point", coordinates: [4.9073196, 52.3641635] },
+        // latitude: 52.3641635,
+        // longitude: 4.9073196,
         createdAt: new Date(),
         updatedAt: new Date()
       }),
@@ -76,8 +79,9 @@ module.exports = {
         fullName: "Paul Molive",
         email: "paul@paul.com",
         password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        latitude: 52.3707716,
-        longitude: 4.9216604,
+        location: { type: "Point", coordinates: [4.9216604, 52.3707716] },
+        // latitude: 52.3707716,
+        // longitude: 4.9216604,
         createdAt: new Date(),
         updatedAt: new Date()
       }),
@@ -86,8 +90,9 @@ module.exports = {
         fullName: "Greta Life",
         email: "greta@greta.com",
         password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        latitude: 52.377754,
-        longitude: 4.916167,
+        location: { type: "Point", coordinates: [4.916167, 52.377754] },
+        // latitude: 52.377754,
+        // longitude: 4.916167,
         createdAt: new Date(),
         updatedAt: new Date()
       }),
@@ -96,8 +101,9 @@ module.exports = {
         fullName: "Gail Forcewind",
         email: "gail@gail.com",
         password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        latitude: 52.391537,
-        longitude: 4.8973246,
+        location: { type: "Point", coordinates: [4.8973246, 52.391537] },
+        // latitude: 52.391537,
+        // longitude: 4.8973246,
         createdAt: new Date(),
         updatedAt: new Date()
       }),
@@ -106,41 +112,42 @@ module.exports = {
         fullName: "Paige Turner",
         email: "paige@paige.com",
         password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        latitude: 52.3798642,
-        longitude: 4.8454807,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }),
-      User.upsert({
-        userName: "pbjames23",
-        fullName: "Bob Frapples",
-        email: "bob@bob.com",
-        password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        latitude: 52.3495022,
-        longitude: 4.8441968,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }),
-      User.upsert({
-        userName: "elchago100",
-        fullName: "Walter Melon",
-        email: "walter@walter.com",
-        password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        latitude: 52.3190285,
-        longitude: 4.8718545,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }),
-      User.upsert({
-        userName: "booklover",
-        fullName: "Nick R. Bocker",
-        email: "nick@nick.com",
-        password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        latitude: 52.3745612,
-        longitude: 4.8881902,
+        location: { type: "Point", coordinates: [4.8454807, 52.3798642] },
+        // latitude: 52.3798642,
+        // longitude: 4.8454807,
         createdAt: new Date(),
         updatedAt: new Date()
       })
+      // User.upsert({
+      //   userName: "pbjames23",
+      //   fullName: "Bob Frapples",
+      //   email: "bob@bob.com",
+      //   password: bcrypt.hashSync("1234", SALT_ROUNDS),
+      //   latitude: 52.3495022,
+      //   longitude: 4.8441968,
+      //   createdAt: new Date(),
+      //   updatedAt: new Date()
+      // }),
+      // User.upsert({
+      //   userName: "elchago100",
+      //   fullName: "Walter Melon",
+      //   email: "walter@walter.com",
+      //   password: bcrypt.hashSync("1234", SALT_ROUNDS),
+      //   latitude: 52.3190285,
+      //   longitude: 4.8718545,
+      //   createdAt: new Date(),
+      //   updatedAt: new Date()
+      // }),
+      // User.upsert({
+      //   userName: "booklover",
+      //   fullName: "Nick R. Bocker",
+      //   email: "nick@nick.com",
+      //   password: bcrypt.hashSync("1234", SALT_ROUNDS),
+      //   latitude: 52.3745612,
+      //   longitude: 4.8881902,
+      //   createdAt: new Date(),
+      //   updatedAt: new Date()
+      // })
     ]);
 
     console.log(`SEEDED: ${users.length} users`);

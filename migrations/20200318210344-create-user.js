@@ -26,11 +26,9 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      latitude: {
-        type: Sequelize.DECIMAL
-      },
-      longitude: {
-        type: Sequelize.DECIMAL
+      location: {
+        type: Sequelize.GEOMETRY("POINT", 4326),
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
