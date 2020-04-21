@@ -31,7 +31,55 @@ router.get(
 
       let filteredBooks;
 
-      if (title === "all" && language === "all" && distance !== "all") {
+      if ((title !== "all" && language === "all", distance !== "all")) {
+        filteredBooks = await Book.findAll({
+          include: [
+            {
+              model: User,
+              attributes: ["location"]
+            }
+          ],
+          where: {
+            title: title,
+
+            $and: sequelize.where(
+              sequelize.fn(
+                "ST_Dwithin",
+                // sequelize.literal("location"),
+                sequelize.col("user.location"),
+                sequelize.literal(`ST_MakePoint(${long},${lat})::geography`),
+                desiredDistance
+              ),
+              true
+            )
+          }
+        });
+      } else if ((title === "all" && language !== "all", distance !== "all")) {
+        filteredBooks = await Book.findAll({
+          include: [
+            {
+              model: User,
+              attributes: ["location"]
+            }
+          ],
+          where: {
+            language: language,
+
+            $and: sequelize.where(
+              sequelize.fn(
+                "ST_Dwithin",
+                // sequelize.literal("location"),
+                sequelize.col("user.location"),
+                sequelize.literal(`ST_MakePoint(${long},${lat})::geography`),
+                desiredDistance
+              ),
+              true
+            )
+          }
+        });
+      }
+      // else if (title === "all" && language === "all" && distance !== "all"){}
+      else if (title === "all" && language === "all" && distance !== "all") {
         filteredBooks = await Book.findAll({
           include: [
             {
