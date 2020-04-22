@@ -132,4 +132,16 @@ router.get(
   }
 );
 
+router.get("/:id", async (req, res) => {
+  try {
+    const book = await Book.findOne({
+      where: { id: req.params.id },
+      include: User
+    });
+    res.status(200).json(book);
+  } catch (e) {
+    console.log("error: ", e);
+  }
+});
+
 module.exports = router;
