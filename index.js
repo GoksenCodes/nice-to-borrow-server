@@ -154,6 +154,9 @@ app.use("/", authRouter);
 const bookRouter = require("./routers/book");
 app.use("/books", bookRouter);
 
+const borrowedItemRouter = require("./routers/borroweditem");
+app.use("/borroweditems", borrowedItemRouter);
+
 // Listen for connections on specified port (default is port 4000)
 const { PORT } = require("./config/constants");
 
