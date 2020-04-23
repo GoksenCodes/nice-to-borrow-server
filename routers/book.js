@@ -144,4 +144,14 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.patch("/:id", async (req, res) => {
+  const book = await Book.findByPk(req.params.id);
+
+  const isAvailable = false;
+
+  await book.update({ isAvailable });
+
+  return res.send({ book });
+});
+
 module.exports = router;
