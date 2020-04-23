@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert("books", [
       {
-        title: "Merlin",
+        title: "merlin",
         language: "tr",
         isAvailable: true,
         imageUrl:
