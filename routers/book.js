@@ -154,4 +154,36 @@ router.patch("/:id", async (req, res) => {
   return res.send({ book });
 });
 
+router.post("/", auth, async (req, res, next) => {
+  const userId = req.user.id;
+  try {
+    const {
+      title,
+      description,
+      imageUrl,
+      borrowingPeriod,
+      author,
+      language
+    } = req.body;
+    if (!title || !author || !language || !borrowingPeriod) {
+      res.status(400).send("missing information");
+    } else {
+      const newBook = await Book.create({
+        title,
+        description,
+        imageUrl,
+        borrowingPeriod,
+        author,
+        language,
+        userId
+      });
+      return res
+        .status(201)
+        .send({ message: "New book is added successfully", newBook });
+    }
+  } catch (e) {
+    next(e);
+  }
+});
+
 module.exports = router;
