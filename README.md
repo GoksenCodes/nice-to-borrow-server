@@ -19,7 +19,6 @@ Built with Node with Express for RestAPIs in the backend, and PostgreSQL with Se
 | GET    | '/books'                   | Get books match with the search     | title, language, distance | no   |
 | GET    | '/books/:id                | Get book by id                      | bookId                    | no   |
 | PACTH  | '/books/:id                | Update requested book's availability| bookId                    | yes  | 
-
 | POST   | '/borroweditems            | Keep track of borowwed books        | bookId, startDate,
                                                                               endDate,userId            | yes  |
 | POST   | '/books'                   | Add books to the database           | title, language, author,                                                                                                       description, imageUrl,
