@@ -111,6 +111,9 @@ if (process.env.DELAY) {
 
 const authMiddleWare = require("./auth/middleware");
 
+const cors = require("cors");
+app.use(cors());
+
 /**
  * Routes
  *
