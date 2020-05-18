@@ -1,5 +1,6 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
+  console.log("model loaded");
   const user = sequelize.define("user", {
     userName: {
       type: DataTypes.STRING,
@@ -25,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   });
+  console.log("MODEL DEFINED");
   user.associate = function(models) {
     user.hasMany(models.book);
     user.belongsToMany(models.book, {
