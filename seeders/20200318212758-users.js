@@ -46,7 +46,16 @@ module.exports = {
         fullName: "Mario Speedwagon",
         email: "mario@mario.com",
         password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        location: { type: "Point", coordinates: [4.8851288, 52.36534] },
+        location: {
+          type: "Point",
+          coordinates: [4.8851288, 52.36534],
+          crs: {
+            type: "name",
+            properties: {
+              name: "urn:ogc:def:crs:EPSG::4326"
+            }
+          }
+        },
         // latitude: 52.36534,
         // longitude: 4.8851288,
         createdAt: new Date(),
@@ -57,7 +66,16 @@ module.exports = {
         fullName: "Petey Cruiser",
         email: "petey@petey.com",
         password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        location: { type: "Point", coordinates: [4.8794803, 52.3727781] },
+        location: {
+          type: "Point",
+          coordinates: [4.8794803, 52.3727781],
+          crs: {
+            type: "name",
+            properties: {
+              name: "urn:ogc:def:crs:EPSG::4326"
+            }
+          }
+        },
         // latitude: 52.3727781,
         // longitude: 4.8794803,
         createdAt: new Date(),
@@ -68,7 +86,16 @@ module.exports = {
         fullName: "Anna Sthesia",
         email: "anna@anna.com",
         password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        location: { type: "Point", coordinates: [4.9073196, 52.3641635] },
+        location: {
+          type: "Point",
+          coordinates: [4.9073196, 52.3641635],
+          crs: {
+            type: "name",
+            properties: {
+              name: "urn:ogc:def:crs:EPSG::4326"
+            }
+          }
+        },
         // latitude: 52.3641635,
         // longitude: 4.9073196,
         createdAt: new Date(),
@@ -79,7 +106,16 @@ module.exports = {
         fullName: "Paul Molive",
         email: "paul@paul.com",
         password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        location: { type: "Point", coordinates: [4.9216604, 52.3707716] },
+        location: {
+          type: "Point",
+          coordinates: [4.9216604, 52.3707716],
+          crs: {
+            type: "name",
+            properties: {
+              name: "urn:ogc:def:crs:EPSG::4326"
+            }
+          }
+        },
         // latitude: 52.3707716,
         // longitude: 4.9216604,
         createdAt: new Date(),
@@ -90,7 +126,16 @@ module.exports = {
         fullName: "Greta Life",
         email: "greta@greta.com",
         password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        location: { type: "Point", coordinates: [4.916167, 52.377754] },
+        location: {
+          type: "Point",
+          coordinates: [4.916167, 52.377754],
+          crs: {
+            type: "name",
+            properties: {
+              name: "urn:ogc:def:crs:EPSG::4326"
+            }
+          }
+        },
         // latitude: 52.377754,
         // longitude: 4.916167,
         createdAt: new Date(),
@@ -101,7 +146,16 @@ module.exports = {
         fullName: "Gail Forcewind",
         email: "gail@gail.com",
         password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        location: { type: "Point", coordinates: [4.8973246, 52.391537] },
+        location: {
+          type: "Point",
+          coordinates: [4.8973246, 52.391537],
+          crs: {
+            type: "name",
+            properties: {
+              name: "urn:ogc:def:crs:EPSG::4326"
+            }
+          }
+        },
         // latitude: 52.391537,
         // longitude: 4.8973246,
         createdAt: new Date(),
@@ -112,7 +166,16 @@ module.exports = {
         fullName: "Paige Turner",
         email: "paige@paige.com",
         password: bcrypt.hashSync("1234", SALT_ROUNDS),
-        location: { type: "Point", coordinates: [4.8454807, 52.3798642] },
+        location: {
+          type: "Point",
+          coordinates: [4.8454807, 52.3798642],
+          crs: {
+            type: "name",
+            properties: {
+              name: "urn:ogc:def:crs:EPSG::4326"
+            }
+          }
+        },
         // latitude: 52.3798642,
         // longitude: 4.8454807,
         createdAt: new Date(),
