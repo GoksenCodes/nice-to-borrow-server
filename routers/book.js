@@ -28,6 +28,7 @@ router.get(
       const lat = req.params.latitude;
       const long = req.params.longitude;
       const desiredDistance = req.params.distance;
+      const bookTitle = title.toLowerCase();
 
       let filteredBooks;
 
@@ -40,14 +41,23 @@ router.get(
             }
           ],
           where: {
-            title: title,
+            title: sequelize.where(
+              sequelize.fn("LOWER", sequelize.col("title")),
+              "LIKE",
+              "%" + bookTitle + "%"
+            ),
 
             $and: sequelize.where(
               sequelize.fn(
                 "ST_Dwithin",
                 // sequelize.literal("location"),
                 sequelize.col("user.location"),
-                sequelize.literal(`ST_MakePoint(${long},${lat})::geography`),
+                // sequelize.literal(`ST_MakePoint(${long},${lat})::geography`),
+                sequelize.fn(
+                  "ST_SetSRID",
+                  sequelize.literal(`ST_MakePoint(${long},${lat})::geography`),
+                  "4326"
+                ),
                 desiredDistance
               ),
               true
@@ -71,7 +81,11 @@ router.get(
                 "ST_Dwithin",
                 // sequelize.literal("location"),
                 sequelize.col("user.location"),
-                sequelize.literal(`ST_MakePoint(${long},${lat})::geography`),
+                sequelize.fn(
+                  "ST_SetSRID",
+                  sequelize.literal(`ST_MakePoint(${long},${lat})::geography`),
+                  "4326"
+                ),
                 desiredDistance
               ),
               true
@@ -93,7 +107,11 @@ router.get(
               "ST_Dwithin",
               // sequelize.literal("location"),
               sequelize.col("user.location"),
-              sequelize.literal(`ST_MakePoint(${long},${lat})::geography`),
+              sequelize.fn(
+                "ST_SetSRID",
+                sequelize.literal(`ST_MakePoint(${long},${lat})::geography`),
+                "4326"
+              ),
               desiredDistance
             ),
             true
@@ -104,10 +122,11 @@ router.get(
         filteredBooks = await Book.findAll({
           include: User,
           where: {
-            title: title
-            // {
-            //   [Op.iLike]: " title"
-            // }
+            title: sequelize.where(
+              sequelize.fn("LOWER", sequelize.col("title")),
+              "LIKE",
+              "%" + bookTitle + "%"
+            )
           }
         });
       } else if (title === "all" && language !== "all") {
@@ -119,7 +138,11 @@ router.get(
       } else {
         filteredBooks = await Book.findAll({
           where: {
-            title: title,
+            title: sequelize.where(
+              sequelize.fn("LOWER", sequelize.col("title")),
+              "LIKE",
+              "%" + bookTitle + "%"
+            ),
             language: language
           }
         });
