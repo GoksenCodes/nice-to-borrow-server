@@ -35,9 +35,13 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.post("/signup", async (req, res) => {
-  const { email, password, name } = req.body;
-  if (!email || !password || !name) {
+  const { userName, fullName, email, password, longitude, latitude } = req.body;
+  if (!email || !password || !fullName || !userName) {
     return res.status(400).send("Please provide an email, password and a name");
+  } else if (!latitude || !longitude) {
+    return res
+      .status(400)
+      .send("Please submit your location through allowing tracking location");
   }
 
   try {
