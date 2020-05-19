@@ -35,20 +35,24 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.post("/signup", async (req, res) => {
-  const { userName, fullName, email, password, longitude, latitude } = req.body;
+  const { userName, fullName, email, password, location } = req.body;
+  console.log("REQ BODY", req.body);
   if (!email || !password || !fullName || !userName) {
     return res.status(400).send("Please provide an email, password and a name");
-  } else if (!latitude || !longitude) {
-    return res
-      .status(400)
-      .send("Please submit your location through allowing tracking location");
   }
+  // else if (!latitude || !longitude) {
+  //   return res
+  //     .status(400)
+  //     .send("Please submit your location through allowing tracking location");
+  // }
 
   try {
     const newUser = await User.create({
+      userName,
+      fullName,
       email,
       password: bcrypt.hashSync(password, SALT_ROUNDS),
-      name
+      location
     });
 
     delete newUser.dataValues["password"]; // don't send back the password hash
@@ -63,8 +67,11 @@ router.post("/signup", async (req, res) => {
         .send({ message: "There is an existing account with this email" });
     }
 
-    return res.status(400).send({ message: "Something went wrong, sorry" });
+    return res
+      .status(400)
+      .send({ message: "Something went wrong, sorry", error });
   }
+  console.log(error);
 });
 
 // The /me endpoint can be used to:
