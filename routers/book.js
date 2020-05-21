@@ -18,6 +18,22 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/languages", async (req, res) => {
+  try {
+    const allBooks = await Book.findAll();
+    const allLanguages = allBooks.map(({ language }) => language);
+    console.log(allLanguages);
+    const unique = (value, index, self) => {
+      return self.indexOf(value) === index;
+    };
+    const uniqueLanguages = allLanguages.filter(unique);
+    console.log(uniqueLanguages);
+    res.status(200).json(uniqueLanguages);
+  } catch (e) {
+    console.log("error: ", e);
+  }
+});
+
 router.get(
   "/:title/:language/:distance/:latitude/:longitude",
   async (req, res) => {
